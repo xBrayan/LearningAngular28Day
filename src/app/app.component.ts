@@ -1,30 +1,18 @@
-import { Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnChanges, OnInit, OnDestroy {
+export class AppComponent {
   name!: string;
   //name = "Domini";
   cities = ['Twinza', '1ero de Mayo', 'Eloy Alfaro', 'Las Peñas'];
   title = 'Día 4 del reto';
   url = 'https://res.cloudinary.com/practicaldev/image/fetch/s--9O4-RiZT--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://miro.medium.com/max/990/1%2AOc2PsJ-QKOUG2I8J3HNmWQ.png';
-  selection!:String;
+  selection!:string;
 
-
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log('Change->',changes);
-  }
-
-  ngOnInit(): void {
-    console.log('OnInit ->');
-  }
-
-  ngOnDestroy(): void {
-    console.log('Destroy');
-  }
 
   onCityClicked(city: string):void{
     console.log('City ->' , city);

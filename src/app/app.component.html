@@ -23,5 +23,11 @@
 -->
 <div *ngIf="selection">
     <p >Your city is: {{selection}}</p>
-    <button (click)="onClear()">Clear your selection</button>
+    <!-- <button (click)="onClear()">Clear your selection</button> -->
+    <app-button (click)="onClear()" [color]="'blue'" [label]="'Clear your selection'" 
+    [selection]="selection"></app-button>
+    <!--
+    <app-button (click)="onClear()" [color]="'green'" [label]="'xRevio'"></app-button>
+    <app-button (click)="onClear()" [color]="'red'" [label]="'Hola mundo'"></app-button>
+    -->
 </div>
