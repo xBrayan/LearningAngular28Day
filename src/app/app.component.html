@@ -3,9 +3,10 @@
 <p>Total: {{5+5}}</p>
 <img src="{{url}}" alt="">
 -->
-<p *ngIf="name">Tu nombre es : {{name}}</p>
+<!--
+    <p *ngIf="name">Tu nombre es : {{name}}</p>
 <input type="text" [(ngModel)]="name">
-
+-->
 <ul>
     <li>Twinza</li>
     <li>Eloy Alfaro</li>
@@ -13,12 +14,14 @@
 </ul>
 <!-- Para renderizar con la directiva se debe poener asterisco-->
 <ul *ngFor="let city of cities">
-    <!--'selected blue'  STRING-->
-    <!-- ['selected', 'blue'] ARRAY-->
-    <!-- 
-        <li [ngClass]="{'selected': city ==='Las Peñas', 'blue':city !='Las Peñas'}">{{city}}</li>
-    -->
-
-    <li [ngStyle]="{'color': 'red', 'background-color': city === 'Las Peñas' ? 'blue': 'green'}">{{city}}</li>
-
+    <li (click)="onCityClicked(city)" [ngClass]="{'selected': city ===selection}">{{city}}</li>
+    
 </ul>
+
+<!--
+    <button (click)="onSave()"> Save </button>
+-->
+<div *ngIf="selection">
+    <p >Your city is: {{selection}}</p>
+    <button (click)="onClear()">Clear your selection</button>
+</div>
