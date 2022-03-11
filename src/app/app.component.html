@@ -1,33 +1,25 @@
-<!--
-<p>{{ title }} en Dominicode</p>
-<p>Total: {{5+5}}</p>
-<img src="{{url}}" alt="">
--->
-<!--
-    <p *ngIf="name">Tu nombre es : {{name}}</p>
-<input type="text" [(ngModel)]="name">
--->
-<ul>
-    <li>Twinza</li>
-    <li>Eloy Alfaro</li>
-    <li>1ro de Mayo</li>
-</ul>
-<!-- Para renderizar con la directiva se debe poener asterisco-->
-<ul *ngFor="let city of cities">
-    <li (click)="onCityClicked(city)" [ngClass]="{'selected': city ===selection}">{{city}}</li>
-    
-</ul>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 my-3">
+            <!--Ligo un evento del hijo al metodo del padre-->  <!--De aqui le envio al hijo-->
+            <app-form-new-item (newItemEvent)="addNewCity($event)" [label]="'City'" [className]="'btn-info'"> </app-form-new-item>
+        </div>
+        <div class="col-md-8">
+            <ul >
+                <li *ngFor="let city of cities" (click)="onCityClicked(city)" [ngClass]="{'alert alert-info': city ===selection}">{{city}}</li>
+            </ul>                        
+        </div>
+        <!---Reutilizable-->
+        <app-form-new-item (newItemEvent)="addNewCity($event)" [label]="'Shoes'" [className]="'btn-primary'"> </app-form-new-item>
+        <app-form-new-item (newItemEvent)="addNewCity($event)" [label]="'Products'" [className]="'btn-danger'"> </app-form-new-item>
 
-<!--
-    <button (click)="onSave()"> Save </button>
--->
-<div *ngIf="selection">
-    <p >Your city is: {{selection}}</p>
-    <!-- <button (click)="onClear()">Clear your selection</button> -->
-    <app-button (click)="onClear()" [color]="'blue'" [label]="'Clear your selection'" 
-    [selection]="selection"></app-button>
-    <!--
-    <app-button (click)="onClear()" [color]="'green'" [label]="'xRevio'"></app-button>
-    <app-button (click)="onClear()" [color]="'red'" [label]="'Hola mundo'"></app-button>
-    -->
+        <div class="col-md-4">  
+            <div *ngIf="selection">
+                <p >Your city is: {{selection}}</p>
+                <app-button (click)="onClear()" [color]="'blue'" [label]="'Clear your selection'"></app-button>
+            </div>
+        </div>
+    </div>
 </div>
+
+
