@@ -5,14 +5,14 @@
             <app-form-new-item (newItemEvent)="addNewCity($event)" [label]="'City'" [className]="'btn-info'"> </app-form-new-item>
         </div>
         <div class="col-md-8">
-            <ul >
-                <li *ngFor="let city of cities" (click)="onCityClicked(city)" [ngClass]="{'alert alert-info': city ===selection}">{{city}}</li>
-            </ul>                        
+            <ul>
+                <app-cities *ngFor="let city of cities"
+                (cityClickedEvent)="onCityClicked($event)" [city]="city" [selection]="selection">
+                </app-cities>                       
+            </ul>
         </div>
-        <!---Reutilizable-->
-        <app-form-new-item (newItemEvent)="addNewCity($event)" [label]="'Shoes'" [className]="'btn-primary'"> </app-form-new-item>
-        <app-form-new-item (newItemEvent)="addNewCity($event)" [label]="'Products'" [className]="'btn-danger'"> </app-form-new-item>
-
+        
+        <!-- <input type="text" (keypress)="onShearch()"> -->
         <div class="col-md-4">  
             <div *ngIf="selection">
                 <p >Your city is: {{selection}}</p>

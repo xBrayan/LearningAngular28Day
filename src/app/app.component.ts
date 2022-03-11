@@ -24,4 +24,8 @@ export class AppComponent {
   onClear():void{
     this.selection = '';
   }
+
+  onShearch(): void{
+    console.log('OnShearch')
+  }
 }
