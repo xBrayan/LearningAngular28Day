@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output
   selector: 'app-cities',
   template:`
   <ul >
-    <li  (click)="onCityClicked(city)" [ngClass]="{'alert alert-info': city ===selection}">{{city}}</li>
+    <li  (click)="onCityClicked(city)" [ngClass]="{'alert alert-info': city ===selection}">{{city | titlecase}}</li>
   </ul>
   <!-- <p>Count: {{counterRender()}}</p> -->
   ` ,

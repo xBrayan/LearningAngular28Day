@@ -1,18 +1,20 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-12 my-3">
+        <div class="col-md-6 my-3">
             <!--Ligo un evento del hijo al metodo del padre-->  <!--De aqui le envio al hijo-->
             <app-form-new-item (newItemEvent)="addNewCity($event)" [label]="'City'" [className]="'btn-info'"> </app-form-new-item>
         </div>
+
+        <div class="col-md-6 my-3">
+            <input type="text" class="form-control" placeholder="Filter..."[(ngModel)]="criteria">
+        </div>
         <div class="col-md-8">
             <ul>
-                <app-cities *ngFor="let city of cities"
+                <app-cities *ngFor="let city of ( cities | filter:criteria)"
                 (cityClickedEvent)="onCityClicked($event)" [city]="city" [selection]="selection">
                 </app-cities>                       
             </ul>
         </div>
-        
-        <!-- <input type="text" (keypress)="onShearch()"> -->
         <div class="col-md-4">  
             <div *ngIf="selection">
                 <p >Your city is: {{selection}}</p>
