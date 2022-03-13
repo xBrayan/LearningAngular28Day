@@ -1,4 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+
+interface ContactForm{
+  "name": string;
+  "checkAdult": boolean;
+  "departament": string;
+  "comment": string;
+}
+
 
 @Component({
   selector: 'app-contact',
@@ -7,12 +16,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactComponent implements OnInit {
 
+  model = {
+    name: "",
+    checkAdult: false,
+    departament: "",
+    comment: "..."
+  }
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  onSubmit(values : any): void{
-    console.log('Form Value', values);
+  onSubmit(form : NgForm): void{
+    console.log('Form Value Completo', form);
   }
 }
