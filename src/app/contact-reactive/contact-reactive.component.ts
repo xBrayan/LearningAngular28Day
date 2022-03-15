@@ -11,11 +11,15 @@ export class ContactReactiveComponent implements OnInit {
 
   contactFormReactive !: FormGroup;
   name!: string;
+  departaments: string[] =[];
 
   constructor(private readonly fb: FormBuilder, 
     private readonly route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    //resolver
+    this.departaments = this.route.snapshot.data['departaments'];
+
     this.route.queryParams.subscribe((params: Params) =>{
         this.name=params['name'];
       }
