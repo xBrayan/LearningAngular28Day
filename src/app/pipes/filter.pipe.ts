@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from "@angular/core";
+import { City } from "../services/data.service";
 
 @Pipe({
     name: 'filter',
@@ -7,14 +8,14 @@ import { Pipe, PipeTransform } from "@angular/core";
 export class FilterPipe implements PipeTransform{
     
 
-    transform(values: string[], arg: string):string[] {
-        if(!arg || arg?.length<3) return values;
+    transform(cities: City[], arg: string): City[] {
+        if(!arg || arg?.length<3) return cities;
 
-        let result: string[] = [];
+        let result: City[] = [];
 
-        for (const value of values) {
-            if (value.toLowerCase().indexOf(arg.toLowerCase())>-1){
-                result= [...result,value]
+        for (const city of cities) {
+            if (city.name.toLowerCase().indexOf(arg.toLowerCase())>-1){
+                result= [...result,city]
             }
         }
         return result;

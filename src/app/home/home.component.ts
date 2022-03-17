@@ -1,30 +1,60 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { City, DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {
-  name!: string;
-  //name = "Domini";
-  cities = ['Twinza', '1ero de Mayo', 'Eloy Alfaro', 'Las Peñas'];
+export class HomeComponent implements OnInit{
+  cities: City[]=[];
   title = 'Día 4 del reto';
-  url = 'https://res.cloudinary.com/practicaldev/image/fetch/s--9O4-RiZT--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://miro.medium.com/max/990/1%2AOc2PsJ-QKOUG2I8J3HNmWQ.png';
-  selection!:string;
+
+  selection!:City;
 
   criteria = '';
 
-  addNewCity(city: string):void{
-    this.cities.push(city);
+  constructor (private readonly dataService: DataService) {}
+  ngOnInit(): void {
+    this.dataService.getCities()
+    .subscribe(resCities => {
+      //recibimos la data
+      this.cities = [...resCities];
+    });
   }
-  onCityClicked(city: string):void{
-    console.log('City ->' , city);
+
+  updateCity(city: City): void{
+    this.dataService.updateCity(city).subscribe( res =>{
+      const tempArray = this.cities.filter(item => item._id!==city._id);
+      this.cities=[...tempArray, city];
+      this.onClear();
+    });
+  }
+  addNewCity(city: string):void{
+    this.dataService.addNewCity(city).subscribe(res => {
+      this.cities.push(res);
+    });
+  }
+  onCitySelected(city: City):void{
+    //console.log('City ->' , city);
     this.selection = city;
   }
 
-  onClear():void{
-    this.selection = '';
+  onCityDeleted(id: string):void{
+    //console.log('id',id)
+    if(confirm('Are you sure?')){
+      this.dataService.deleteCity(id).subscribe(res => {
+        const tempArray = this.cities.filter(city => city._id!==id);
+        this.cities = [...tempArray];
+        this.onClear();
+      });
+    }
   }
 
+  onClear():void{
+    this.selection = {
+       _id:'',
+       name:''
+    };
+  }
 }
