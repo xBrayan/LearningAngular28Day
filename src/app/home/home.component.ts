@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { NgModel } from '@angular/forms';
 import { City, DataService } from '../services/data.service';
 
 @Component({
@@ -6,7 +7,9 @@ import { City, DataService } from '../services/data.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent implements OnInit, AfterViewInit{
+  @ViewChild(NgModel) filterInput!: NgModel;
+
   cities: City[]=[];
   title = 'Día 4 del reto';
 
@@ -15,6 +18,20 @@ export class HomeComponent implements OnInit{
   criteria = '';
 
   constructor (private readonly dataService: DataService) {}
+  
+  ngAfterViewInit(): void {
+    this.filterInput.valueChanges?.
+    subscribe(res => {
+      console.log('res',res);
+      this.filter(res);
+    });
+  }
+
+  filter(query: string): void{
+    console.log('Query',query);
+    
+  }
+
   ngOnInit(): void {
     this.dataService.getCities()
     .subscribe(resCities => {

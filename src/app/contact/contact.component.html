@@ -1,5 +1,5 @@
 <h1>contact form - UserId {{id}}</h1>
-<form 	(ngSubmit)="onSubmit(contactForm.value)" #contactForm="ngForm" >
+<form 	(ngSubmit)="onSubmit()" #contactForm="ngForm" >
     <div class="mb-4">
         <label for="name" class="form-label" >name</label>
         <input type="text" class="form-control" id="name" name="name" [(ngModel)]="model.name" required #name="ngModel">
