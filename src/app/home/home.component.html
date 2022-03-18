@@ -16,6 +16,21 @@
             (citySelectedEvent)="onCitySelected($event)" [city]="city" [selection]="selection">
             </app-cities>                       
         </div>
+        <hr>
+        <app-card>
+            <div card-body>Soy Body</div>
+            <div card-header>Soy Header</div>
+        </app-card>
+        <hr>
+        <app-card>
+            <div card-body>Soy Body 2</div>
+            <div card-header>Soy Header 2</div>
+        </app-card>
+        <hr>
+        <app-card>
+            <div card-body>Soy Body 3</div>
+            <div card-header>Soy Header 3</div>
+        </app-card>
         <div class="col-md-4">  
             <div *ngIf="selection?.name">
                 <p >Your city is: {{selection?.name}}</p>
