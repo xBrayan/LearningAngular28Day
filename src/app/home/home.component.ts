@@ -33,6 +33,8 @@ export class HomeComponent implements OnInit, AfterViewInit{
   }
 
   ngOnInit(): void {
+    this.dataService.selectedCity$.subscribe( (city: City) => this.selection = city);
+
     this.dataService.getCities()
     .subscribe(resCities => {
       //recibimos la data
@@ -54,7 +56,8 @@ export class HomeComponent implements OnInit, AfterViewInit{
   }
   onCitySelected(city: City):void{
     //console.log('City ->' , city);
-    this.selection = city;
+    //this.selection = city;
+    this.dataService.setCity(city)
   }
 
   onCityDeleted(id: string):void{

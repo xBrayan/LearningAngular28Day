@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-contact-reactive',
@@ -12,9 +13,11 @@ export class ContactReactiveComponent implements OnInit {
   contactFormReactive !: FormGroup;
   name!: string;
   departaments: string[] =[];
+  selectedCity$ = this.dataService.selectedCity$; 
 
   constructor(private readonly fb: FormBuilder, 
-    private readonly route: ActivatedRoute) { }
+    private readonly route: ActivatedRoute,
+    private readonly dataService: DataService) { }
 
   ngOnInit(): void {
     //resolver
