@@ -8,9 +8,8 @@ describe('SprinnerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SprinnerComponent ]
-    })
-    .compileComponents();
+      declarations: [SprinnerComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

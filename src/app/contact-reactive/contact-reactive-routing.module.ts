@@ -5,16 +5,16 @@ import { DataResolverService } from '../resolvers/data.resolver.service';
 import { ContactReactiveComponent } from './contact-reactive.component';
 
 const routes: Routes = [
-  { 
-    path:'', 
-    component: ContactReactiveComponent, 
+  {
+    path: '',
+    component: ContactReactiveComponent,
     canDeactivate: [Whithoutsave2Guard],
-    resolve:{departaments: DataResolverService},
+    resolve: { departaments: DataResolverService },
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class ContactReactiveRoutingModule { }
+export class ContactReactiveRoutingModule {}

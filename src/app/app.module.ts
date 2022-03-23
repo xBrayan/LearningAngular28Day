@@ -35,17 +35,16 @@ import { CardComponent } from './card/card.component';
     DetailsComponent,
     ListComponent,
     SprinnerComponent,
-    CardComponent
+    CardComponent,
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    AppRoutingModule,
-    HttpClientModule,
+  imports: [BrowserModule, FormsModule, AppRoutingModule, HttpClientModule],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SpinnerInterceptor,
+      multi: true,
+    },
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi:true
-  }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
